@@ -1,0 +1,444 @@
+# Translation of Parsi Shipping in Persian (Farsi)
+# This file is distributed under the same license as the Parsi Shipping package.
+# Parsi Post Team <support@parsipost.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Parsi Shipping 1.0.0\n"
+"Report-Msgid-Bugs-To: support@parsipost.com\n"
+"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-01T00:00:00+00:00\n"
+"Last-Translator: Parsi Post Team <support@parsipost.com>\n"
+"Language-Team: Persian (Iran) <fa@li.org>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Parsi Shipping\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,4c\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+
+#: parsi.php:4
+msgid "PARSI - WooCommerce Shipping Integration"
+msgstr "پارسی پست - افزونه ارسال ووکامرس"
+
+#: parsi.php:5
+msgid "A WooCommerce shipping plugin that calculates shipping rates using an external shipping API."
+msgstr "یک افزونه ارسال برای ووکامرس که هزینه ارسال را با استفاده از API خارجی محاسبه می‌کند."
+
+#: parsi.php:7
+msgid "parsi"
+msgstr "parsi"
+
+#: parsi.php:176
+msgid "PARSI Shipping"
+msgstr "ارسال با پارسی پست"
+
+#: parsi.php:177
+msgid "requires WooCommerce to be installed and active."
+msgstr "نیاز به نصب و فعال بودن ووکامرس دارد."
+
+#: parsi.php:231
+msgid "PARSI Settings"
+msgstr "تنظیمات پارسی پست"
+
+#: parsi.php:232
+msgid "PARSI Shipping"
+msgstr "ارسال با پارسی پست"
+
+#: parsi.php:302
+msgid "API Configuration"
+msgstr "پیکربندی API"
+
+#: parsi.php:309
+msgid "Shipping Options"
+msgstr "گزینه‌های ارسال"
+
+#: parsi.php:317
+msgid "API Key"
+msgstr "کلید API"
+
+#: parsi.php:325
+msgid "API URL"
+msgstr "آدرس API"
+
+#: parsi.php:333
+msgid "API Method"
+msgstr "متد API"
+
+#: parsi.php:342
+msgid "Handling Fee"
+msgstr "کارمزد بسته‌بندی"
+
+#: parsi.php:350
+msgid "Enable Logging"
+msgstr "فعال‌سازی ثبت وقایع"
+
+#: parsi.php:358
+msgid "Default Shipping Method"
+msgstr "روش ارسال پیش‌فرض"
+
+#: parsi.php:367
+msgid "Origin City"
+msgstr "شهر مبدا"
+
+#: parsi.php:375
+msgid "Enable Live Calculation"
+msgstr "محاسبه زنده هزینه"
+
+#: parsi.php:383
+msgid "Debug Mode"
+msgstr "حالت عیب‌یابی"
+
+#: parsi.php:413
+msgid "Configure your shipping API credentials and endpoint."
+msgstr "اطلاعات احراز هویت و آدرس API ارسال را پیکربندی کنید."
+
+#: parsi.php:426
+msgid "Configure shipping options and preferences."
+msgstr "تنظیمات و ترجیحات ارسال را پیکربندی کنید."
+
+#: parsi.php:436
+msgid "Enter your API key"
+msgstr "کلید API خود را وارد کنید"
+
+#: parsi.php:438
+msgid "Enter your API key for authentication with the shipping API."
+msgstr "کلید API خود را برای احراز هویت با سرویس ارسال وارد کنید."
+
+#: parsi.php:451
+msgid "Enter the API endpoint URL for shipping rate calculations."
+msgstr "آدرس نقطه پایانی API برای محاسبه هزینه ارسال را وارد کنید."
+
+#: parsi.php:469
+msgid "Select the HTTP method to use for API requests."
+msgstr "متد HTTP برای درخواست‌های API را انتخاب کنید."
+
+#: parsi.php:483
+msgid "Additional handling fee to add to shipping rates (optional)."
+msgstr "کارمزد اضافی برای افزودن به هزینه ارسال (اختیاری)."
+
+#: parsi.php:498
+msgid "Enable logging for API requests and errors"
+msgstr "ثبت وقایع برای درخواست‌ها و خطاهای API فعال شود"
+
+#: parsi.php:512
+msgid "Enter default method ID"
+msgstr "شناسه روش پیش‌فرض را وارد کنید"
+
+#: parsi.php:513
+msgid "Default shipping method ID to use if API returns multiple options (optional)."
+msgstr "شناسه روش ارسال پیش‌فرض در صورت بازگشت چندین گزینه از API (اختیاری)."
+
+#: parsi.php:526
+msgid "The city from which shipments originate (store location)."
+msgstr "شهری که ارسال‌ها از آن انجام می‌شود (موقعیت فروشگاه)."
+
+#: parsi.php:542
+msgid "Enable real-time shipping cost calculation via API during checkout."
+msgstr "محاسبه هزینه ارسال به صورت زنده از طریق API در صفحه پرداخت."
+
+#: parsi.php:558
+msgid "Enable debug mode for detailed API logging (requires logging enabled)."
+msgstr "فعال‌سازی حالت عیب‌یابی برای ثبت وقایع دقیق API (نیاز به فعال بودن ثبت وقایع)."
+
+#: parsi.php:569
+msgid "You do not have sufficient permissions to access this page."
+msgstr "شما دسترسی کافی برای مشاهده این صفحه را ندارید."
+
+#: parsi.php:582
+msgid "Settings saved successfully."
+msgstr "تنظیمات با موفقیت ذخیره شد."
+
+#: parsi.php:623
+msgid "Save Settings"
+msgstr "ذخیره تنظیمات"
+
+#: parsi.php:633
+msgid "Shipment Status Sync"
+msgstr "همگام‌سازی وضعیت ارسال"
+
+#: parsi.php:635
+msgid "Manually sync shipment status from Parsi API."
+msgstr "همگام‌سازی دستی وضعیت ارسال از API پارسی پست."
+
+#: parsi.php:638
+msgid "Sync Now"
+msgstr "همگام‌سازی اکنون"
+
+#: parsi.php:648
+msgid "Logs"
+msgstr "وقایع"
+
+#: parsi.php:650
+msgid "View recent API request logs and errors."
+msgstr "مشاهده وقایع اخیر درخواست‌ها و خطاهای API."
+
+#: parsi.php:652
+msgid "View WooCommerce Logs"
+msgstr "مشاهده وقایع ووکامرس"
+
+#: class-parsi-shipping-method.php:29
+msgid "PARSI Shipping"
+msgstr "ارسال با پارسی پست"
+
+#: class-parsi-shipping-method.php:30
+msgid "Calculate shipping rates using an external shipping API."
+msgstr "محاسبه هزینه ارسال با استفاده از API پارسی پست"
+
+#: class-parsi-shipping-method.php:59
+msgid "PARSI Shipping"
+msgstr "ارسال با پارسی پست"
+
+#: class-parsi-shipping-method.php:77
+msgid "Method Title"
+msgstr "عنوان روش ارسال"
+
+#: class-parsi-shipping-method.php:79
+msgid "This controls the title which the user sees during checkout."
+msgstr "این عنوان در صفحه پرداخت برای مشتری نمایش داده می‌شود."
+
+#: class-parsi-shipping-method.php:80
+msgid "PARSI Shipping"
+msgstr "ارسال با پارسی پست"
+
+#: class-parsi-shipping-method.php:84
+msgid "Tax Status"
+msgstr "وضعیت مالیات"
+
+#: class-parsi-shipping-method.php:89
+msgid "Taxable"
+msgstr "مشمول مالیات"
+
+#: class-parsi-shipping-method.php:90
+msgid "None"
+msgstr "بدون مالیات"
+
+#: class-parsi-shipping-method.php:171
+msgid "Shipping (Contact for rates)"
+msgstr "ارسال (تماس برای استعلام قیمت)"
+
+#: class-parsi-shipping-method.php:175
+msgid "Unable to calculate shipping rates at this time. Please contact us for a quote."
+msgstr "در حال حاضر امکان محاسبه هزینه ارسال وجود ندارد. لطفاً برای استعلام قیمت با ما تماس بگیرید."
+
+#: helpers.php:156
+msgid "Invalid city specified. Please check your shipping address."
+msgstr "شهر وارد شده نامعتبر است. لطفاً آدرس ارسال خود را بررسی کنید."
+
+#: helpers.php:157
+msgid "Shipping tariff not available for this route. Please contact support."
+msgstr "تعرفه ارسال برای این مسیر در دسترس نیست. لطفاً با پشتیبانی تماس بگیرید."
+
+#: helpers.php:158
+msgid "API authentication failed. Please check your API credentials."
+msgstr "احراز هویت API ناموفق بود. لطفاً کلید API خود را بررسی کنید."
+
+#: helpers.php:159
+msgid "Unable to connect to shipping service. Please try again later."
+msgstr "اتصال به سرویس ارسال ممکن نیست. لطفاً دوباره تلاش کنید."
+
+#: helpers.php:160
+msgid "An error occurred while calculating shipping. Please try again."
+msgstr "خطایی در محاسبه هزینه ارسال رخ داد. لطفاً دوباره تلاش کنید."
+
+#: helpers.php:161
+msgid "API key or URL not configured. Please contact store administrator."
+msgstr "تنظیمات API پیکربندی نشده است. لطفاً با مدیر فروشگاه تماس بگیرید."
+
+#: helpers.php:162
+msgid "Live calculation is disabled."
+msgstr "محاسبه زنده هزینه ارسال غیرفعال است."
+
+#: helpers.php:163
+msgid "Destination city is empty."
+msgstr "مقصد ارسال مشخص نشده است."
+
+#: helpers.php:164
+msgid "API request timed out. Please try again."
+msgstr "زمان پاسخگویی API به پایان رسید. لطفاً دوباره تلاش کنید."
+
+#: class-parsi-status-sync.php:209
+msgid "Parsi shipment status sync completed. Synced: %d, Failed: %d"
+msgstr "همگام‌سازی وضعیت ارسال پارسی پست به پایان رسید. موفق: %d، ناموفق: %d"
+
+#: class-parsi-status-sync.php:260
+msgid "Sync Interval"
+msgstr "فاصله همگام‌سازی"
+
+#: class-parsi-status-sync.php:274
+msgid "Sync Interval"
+msgstr "فاصله همگام‌سازی"
+
+#: class-parsi-status-sync.php:276
+msgid "Every 30 minutes"
+msgstr "هر ۳۰ دقیقه"
+
+#: class-parsi-status-sync.php:277
+msgid "Every hour"
+msgstr "هر ۱ ساعت"
+
+#: class-parsi-status-sync.php:278
+msgid "Every 2 hours"
+msgstr "هر ۲ ساعت"
+
+#: class-parsi-status-sync.php:279
+msgid "Every 4 hours"
+msgstr "هر ۴ ساعت"
+
+#: class-parsi-status-sync.php:280
+msgid "Every 8 hours"
+msgstr "هر ۸ ساعت"
+
+#: class-parsi-status-sync.php:281
+msgid "Daily"
+msgstr "روزانه"
+
+#: class-parsi-status-sync.php:283
+msgid "How often to sync shipment status from Parsi API."
+msgstr "چند وقت یک‌بار وضعیت ارسال از API پارسی پست همگام‌سازی شود."
+
+#: class-parsi-status-sync.php:169
+msgid "Parsi shipment status updated: %s"
+msgstr "وضعیت ارسال پارسی پست به‌روزرسانی شد: %s"
+
+#: class-parsi-orders.php:115
+msgid "ارسال با پارسی پست"
+msgstr "ارسال با پارسی پست"
+
+#: class-parsi-orders.php:197
+msgid "فعال"
+msgstr "فعال"
+
+#: class-parsi-orders.php:203
+msgid "غیرفعال"
+msgstr "غیرفعال"
+
+#: class-parsi-orders.php:211
+msgid "کد پیگیری:"
+msgstr "کد پیگیری:"
+
+#: class-parsi-orders.php:236
+msgid "در حال فعال‌سازی..."
+msgstr "در حال فعال‌سازی..."
+
+#: class-parsi-orders.php:237
+msgid "در حال غیرفعال‌سازی..."
+msgstr "در حال غیرفعال‌سازی..."
+
+#: class-parsi-orders.php:238
+msgid "خطا در ذخیره تنظیمات"
+msgstr "خطا در ذخیره تنظیمات"
+
+#: class-parsi-orders.php:239
+msgid "کد پیگیری:"
+msgstr "کد پیگیری:"
+
+#: class-parsi-orders.php:240
+msgid "غیرفعال"
+msgstr "غیرفعال"
+
+#: class-parsi-tracking.php:164
+msgid "رهگیری آنلاین پارسی پست"
+msgstr "رهگیری آنلاین پارسی پست"
+
+#: class-parsi-tracking.php:166
+msgid "کد پیگیری:"
+msgstr "کد پیگیری:"
+
+#: class-parsi-tracking.php:173
+msgid "بررسی وضعیت رهگیری"
+msgstr "بررسی وضعیت رهگیری"
+
+#: class-parsi-tracking.php:185
+msgid "در حال بررسی..."
+msgstr "در حال بررسی..."
+
+#: class-parsi-tracking.php:201
+msgid "وضعیت بسته:"
+msgstr "وضعیت بسته:"
+
+#: class-parsi-tracking.php:204
+msgid "وضعیت:"
+msgstr "وضعیت:"
+
+#: class-parsi-tracking.php:208
+msgid "مکان فعلی:"
+msgstr "مکان فعلی:"
+
+#: class-parsi-tracking.php:212
+msgid "تاریخچه:"
+msgstr "تاریخچه:"
+
+#: class-parsi-tracking.php:225
+msgid "خطا در دریافت اطلاعات رهگیری. لطفاً دوباره تلاش کنید."
+msgstr "خطا در دریافت اطلاعات رهگیری. لطفاً دوباره تلاش کنید."
+
+#: class-parsi-tracking.php:230
+msgid "خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید."
+msgstr "خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید."
+
+# New shipping fields translations
+#: parsi.php:403
+msgid "Free Shipping Threshold"
+msgstr "آستانه ارسال رایگان"
+
+#: parsi.php:405
+msgid "Minimum order amount for free shipping. If order total exceeds this amount, shipping will be free. 0 means this feature is disabled."
+msgstr "حداقل مبلغ سفارش برای ارسال رایگان. اگر مبلغ سفارش از این مقدار بیشتر باشد، هزینه ارسال رایگان خواهد بود. 0 به معنای غیرفعال بودن این قابلیت است."
+
+#: parsi.php:418
+msgid "Delivery Time Estimate"
+msgstr "برآورد زمان تحویل"
+
+#: parsi.php:420
+msgid "Text to display delivery time estimate on checkout page for customers. Example: 3-5 business days"
+msgstr "متن نمایش زمان تحویل در صفحه پرداخت برای مشتری. مثال: 3-5 روز کاری"
+
+#: parsi.php:433
+msgid "Shipping Insurance"
+msgstr "بیمه ارسال"
+
+#: parsi.php:435
+msgid "Enable shipping insurance for all shipments. Insurance cost will be automatically added to shipping cost."
+msgstr "فعال‌سازی بیمه ارسال برای تمام مرسولات. هزینه بیمه به صورت خودکار به هزینه ارسال اضافه می‌شود."
+
+#: parsi.php:448
+msgid "COD Fee"
+msgstr "کارمزد پرداخت در محل"
+
+#: parsi.php:450
+msgid "Additional fee for Cash on Delivery (COD). This amount will be added to shipping cost. 0 means no fee."
+msgstr "کارمزد اضافی برای پرداخت در محل (COD). این مبلغ به هزینه ارسال اضافه می‌شود. 0 به معنای بدون کارمزد است."
+
+#: parsi.php:463
+msgid "Packaging Type"
+msgstr "نوع بسته‌بندی"
+
+#: parsi.php:465
+msgid "Default packaging type for shipping rate calculation."
+msgstr "نوع بسته‌بندی پیش‌فرض برای محاسبه هزینه ارسال."
+
+#: parsi.php:470
+msgid "Standard"
+msgstr "استاندارد"
+
+#: parsi.php:471
+msgid "Express"
+msgstr "اکسپرس"
+
+#: parsi.php:472
+msgid "Fragile"
+msgstr "قابل‌شکن"
+
+#: parsi.php:473
+msgid "Bulk"
+msgstr "حجمی"
+
+#: parsi.php:861
+msgid "Value cannot be negative."
+msgstr "مقدار نمی‌تواند منفی باشد."
