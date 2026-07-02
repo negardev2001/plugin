@@ -35,3 +35,4 @@ uninstall.php       Cleanup hook
 ## Development
 
 This repo is being developed collaboratively. Open issues / PRs for changes.
+"# plugin" 
