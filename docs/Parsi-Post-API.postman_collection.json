@@ -1,0 +1,482 @@
+{
+  "info": {
+    "name": "Parsi Post — Client Order API",
+    "description": "# Parsi Post — Client Order API\n\nCustomer-facing ordering API used by the **ارسال با پارسی پست** WordPress plugin.\n\n**Base URL:** `https://post.pishgaman.top/api`\n\n## Authentication\n\nEvery request sends **two headers** (both required):\n\n| Header | Value | Missing → |\n|---|---|---|\n| `x-api-key` | your API key | HTTP 401 |\n| `office` | your Office GUID | HTTP 403 |\n\n> There is **no login / Bearer-token step**. The PDF/markdown vendor docs describe a `LOGIN` → `Authorization: Bearer …` flow, but the **live API rejects that** and uses the `x-api-key` + `office` header pair shown here (confirmed by live testing on 2026-05-24).\n\n## Response envelope\n\n`{ \"data\": {…}, \"success\": true|false, \"messages\": [ { \"persian_message\": \"…\" } ] }`\n\nOn error, read `messages[].persian_message` for a human-readable reason.\n\n## Setup\n\nFill the collection **Variables** (`apiKey`, `office`, and the UUIDs) once — every request references them. The UUIDs come from **Get Basic Info**. The values shipped here are the shared **test** contract; replace them with your own for production.\n\n## Notes\n\n- `weight` is in **grams**; locations are `\"lat,long\"` with no spaces.\n- **Save** creates a real, paid order — use with care.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Get Basic Info",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "office",
+            "value": "{{office}}",
+            "type": "text",
+            "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{apiKey}}",
+            "type": "text",
+            "description": "Required. Your API key. Without it the API returns 401."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Ordering/ClientOrder/GetApiOrderBasicInfo",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Ordering",
+            "ClientOrder",
+            "GetApiOrderBasicInfo"
+          ]
+        },
+        "description": "**GET** `/Ordering/ClientOrder/GetApiOrderBasicInfo`\n\nReturns everything needed to build a price/order request for your contract: `provinces` (with their `cities` and city `id`s), `parcelTypes`, `insuranceTypes`, `boxTypes`, `paymentTypes`, and `extraServices`.\n\n**This is where you read the UUIDs** you paste into the WordPress plugin settings (service type, box type, parcel type, insurance type, payment type, sender city).\n\nResponse envelope: `{ data, success, messages }`."
+      },
+      "response": []
+    },
+    {
+      "name": "2. Get All Extra Services",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "office",
+            "value": "{{office}}",
+            "type": "text",
+            "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{apiKey}}",
+            "type": "text",
+            "description": "Required. Your API key. Without it the API returns 401."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Ordering/ClientOrder/GetAllExtraService",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Ordering",
+            "ClientOrder",
+            "GetAllExtraService"
+          ]
+        },
+        "description": "**GET** `/Ordering/ClientOrder/GetAllExtraService`\n\nLists available extra services (`id`, `serviceTypeId`, `title`, `needData`, ...). Use the returned `id`/`extraserviceId` inside `parcelExtraServices` on GetPrice/Save."
+      },
+      "response": []
+    },
+    {
+      "name": "3. Get Service Types (Tariffs)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "office",
+            "value": "{{office}}",
+            "type": "text",
+            "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{apiKey}}",
+            "type": "text",
+            "description": "Required. Your API key. Without it the API returns 401."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Ordering/ClientOrder/GetApiServiceType?senderCityId={{senderCityId}}&receiverCityId={{senderCityId}}&contractId={{contractId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Ordering",
+            "ClientOrder",
+            "GetApiServiceType"
+          ],
+          "query": [
+            {
+              "key": "senderCityId",
+              "value": "{{senderCityId}}"
+            },
+            {
+              "key": "receiverCityId",
+              "value": "{{senderCityId}}"
+            },
+            {
+              "key": "contractId",
+              "value": "{{contractId}}"
+            }
+          ]
+        },
+        "description": "**GET** `/Ordering/ClientOrder/GetApiServiceType`\n\nReturns the service types (tariffs) available between two cities for a contract. Pass `senderCityId`, `receiverCityId`, `contractId` as query parameters."
+      },
+      "response": []
+    },
+    {
+      "name": "4. Calculate Price (GetPrice)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "office",
+            "value": "{{office}}",
+            "type": "text",
+            "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{apiKey}}",
+            "type": "text",
+            "description": "Required. Your API key. Without it the API returns 401."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Ordering/ClientOrder/GetPrice",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Ordering",
+            "ClientOrder",
+            "GetPrice"
+          ]
+        },
+        "description": "**POST** `/Ordering/ClientOrder/GetPrice`\n\nCalculates the shipping price for a parcel. **Read-only** — does not create an order.\n\n`weight` is in **grams**. The price is returned at `data.totalPrice` (and `data.payableAmount`). Verified working against the live API.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"contractId\": \"{{contractId}}\",\n  \"isForeign\": false,\n  \"serviceTypeId\": \"{{serviceTypeId}}\",\n  \"insuranceTypeId\": \"{{insuranceTypeId}}\",\n  \"deadLineId\": \"{{deadlineId}}\",\n  \"senderCityId\": \"{{senderCityId}}\",\n  \"senderPostalCode\": \"8917171717\",\n  \"receiverCityId\": \"{{senderCityId}}\",\n  \"parcelTypeId\": \"{{parcelTypeId}}\",\n  \"boxTypeId\": \"{{boxTypeId}}\",\n  \"weight\": 1000,\n  \"priceValue\": 100000,\n  \"packingPrice\": 10000,\n  \"parcelExtraServices\": []\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "200 OK — price breakdown",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "office",
+                "value": "{{office}}",
+                "type": "text",
+                "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+              },
+              {
+                "key": "x-api-key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Required. Your API key. Without it the API returns 401."
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Ordering/ClientOrder/GetPrice",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Ordering",
+                "ClientOrder",
+                "GetPrice"
+              ]
+            },
+            "description": "**POST** `/Ordering/ClientOrder/GetPrice`\n\nCalculates the shipping price for a parcel. **Read-only** — does not create an order.\n\n`weight` is in **grams**. The price is returned at `data.totalPrice` (and `data.payableAmount`). Verified working against the live API.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contractId\": \"{{contractId}}\",\n  \"isForeign\": false,\n  \"serviceTypeId\": \"{{serviceTypeId}}\",\n  \"insuranceTypeId\": \"{{insuranceTypeId}}\",\n  \"deadLineId\": \"{{deadlineId}}\",\n  \"senderCityId\": \"{{senderCityId}}\",\n  \"senderPostalCode\": \"8917171717\",\n  \"receiverCityId\": \"{{senderCityId}}\",\n  \"parcelTypeId\": \"{{parcelTypeId}}\",\n  \"boxTypeId\": \"{{boxTypeId}}\",\n  \"weight\": 1000,\n  \"priceValue\": 100000,\n  \"packingPrice\": 10000,\n  \"parcelExtraServices\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"data\": {\n    \"servicePrice\": 380250,\n    \"extraServicePrice\": 0,\n    \"packingPrice\": 10000,\n    \"insurancePrice\": 10000,\n    \"contractDiscountPrice\": 0,\n    \"couponDiscountPrice\": 0,\n    \"taxPrice\": 0,\n    \"fareAmount\": 0,\n    \"payableAmount\": 400250,\n    \"totalPrice\": 400250,\n    \"info\": null,\n    \"content\": null,\n    \"extraServiceFactors\": [],\n    \"id\": \"00000000-0000-0000-0000-000000000000\"\n  },\n  \"success\": true,\n  \"api_version\": [\n    1\n  ],\n  \"messages\": []\n}"
+        },
+        {
+          "name": "403 — missing/invalid office header",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "office",
+                "value": "{{office}}",
+                "type": "text",
+                "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+              },
+              {
+                "key": "x-api-key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Required. Your API key. Without it the API returns 401."
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Ordering/ClientOrder/GetPrice",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Ordering",
+                "ClientOrder",
+                "GetPrice"
+              ]
+            },
+            "description": "**POST** `/Ordering/ClientOrder/GetPrice`\n\nCalculates the shipping price for a parcel. **Read-only** — does not create an order.\n\n`weight` is in **grams**. The price is returned at `data.totalPrice` (and `data.payableAmount`). Verified working against the live API.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contractId\": \"{{contractId}}\",\n  \"isForeign\": false,\n  \"serviceTypeId\": \"{{serviceTypeId}}\",\n  \"insuranceTypeId\": \"{{insuranceTypeId}}\",\n  \"deadLineId\": \"{{deadlineId}}\",\n  \"senderCityId\": \"{{senderCityId}}\",\n  \"senderPostalCode\": \"8917171717\",\n  \"receiverCityId\": \"{{senderCityId}}\",\n  \"parcelTypeId\": \"{{parcelTypeId}}\",\n  \"boxTypeId\": \"{{boxTypeId}}\",\n  \"weight\": 1000,\n  \"priceValue\": 100000,\n  \"packingPrice\": 10000,\n  \"parcelExtraServices\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"success\": false,\n  \"api_version\": [\n    1\n  ],\n  \"messages\": [\n    {\n      \"type\": \"Warning\",\n      \"message\": \"شما به این قسمت دسترسی ندارید\",\n      \"persian_message\": \"شما به این قسمت دسترسی ندارید\",\n      \"developer_message\": \"کاربر به این درخواست دسترسی ندارد\",\n      \"field\": \"\"\n    }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "5. Get All Products",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "office",
+            "value": "{{office}}",
+            "type": "text",
+            "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{apiKey}}",
+            "type": "text",
+            "description": "Required. Your API key. Without it the API returns 401."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Ordering/ClientOrder/GetAllProducts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Ordering",
+            "ClientOrder",
+            "GetAllProducts"
+          ]
+        },
+        "description": "**POST** `/Ordering/ClientOrder/GetAllProducts`\n\nPaginated product lookup. `officeId` required; other filters optional. Returns `{ totalItems, items }`.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"officeId\": \"{{office}}\",\n  \"pageIndex\": 0,\n  \"pageSize\": 10\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Get All Receivers",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "office",
+            "value": "{{office}}",
+            "type": "text",
+            "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{apiKey}}",
+            "type": "text",
+            "description": "Required. Your API key. Without it the API returns 401."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Ordering/ClientOrder/GetAllReceivers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Ordering",
+            "ClientOrder",
+            "GetAllReceivers"
+          ]
+        },
+        "description": "**POST** `/Ordering/ClientOrder/GetAllReceivers`\n\nPaginated address-book of previous receivers. Supports filters (lastName, postalCode, nationalCode, mobile, receiverCityId, ...).",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"pageIndex\": 0,\n  \"pageSize\": 10\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Save & Pay Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "office",
+            "value": "{{office}}",
+            "type": "text",
+            "description": "Required. Office GUID (OfficeId). Without it the API returns 403."
+          },
+          {
+            "key": "x-api-key",
+            "value": "{{apiKey}}",
+            "type": "text",
+            "description": "Required. Your API key. Without it the API returns 401."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/Ordering/ClientOrder/Save",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "Ordering",
+            "ClientOrder",
+            "Save"
+          ]
+        },
+        "description": "**POST** `/Ordering/ClientOrder/Save`\n\n⚠️ **Creates and pays for a real order.** Do not run casually with a live contract.\n\nTop-level fields are the sender + payment; each entry in `parcels[]` is one shipment to a receiver. `senderLocation`/`receiverLocation` are `\"lat,long\"` with no spaces. On success the response contains a tracking barcode.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"contractId\": \"{{contractId}}\",\n  \"senderCityId\": \"{{senderCityId}}\",\n  \"senderFirstName\": \"AmirHossein\",\n  \"senderLastName\": \"Abdollahi\",\n  \"senderAddress\": \"آدرس فرستنده\",\n  \"senderPostalCode\": \"8917171717\",\n  \"senderAddressTitle\": \"home\",\n  \"senderLocation\": \"31.856412680380018,54.32582994401454\",\n  \"senderNationalCode\": \"4421234729\",\n  \"senderMobile\": \"09135127340\",\n  \"paymentTypeId\": \"{{paymentTypeId}}\",\n  \"parcels\": [\n    {\n      \"ServiceTypeId\": \"{{serviceTypeId}}\",\n      \"DeadlineId\": \"{{deadlineId}}\",\n      \"receiverCityId\": \"{{senderCityId}}\",\n      \"receiverFirstName\": \"گیرنده\",\n      \"receiverLastName\": \"نمونه\",\n      \"receiverPostalCode\": \"8912121212\",\n      \"receiverNationalCode\": \"4441234729\",\n      \"receiverMobile\": \"09202066830\",\n      \"receiverAddress\": \"آدرس گیرنده\",\n      \"receiverLocation\": \"31.893744621198657,54.30864612794557\",\n      \"receiverAddress2\": \"\",\n      \"insuranceTypeId\": \"{{insuranceTypeId}}\",\n      \"parcelTypeId\": \"{{parcelTypeId}}\",\n      \"boxTypeId\": \"{{boxTypeId}}\",\n      \"weight\": 1000,\n      \"content\": \"بسته\",\n      \"parcelExtraServices\": []\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://parsipost.com/api",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "ey-vOspVKRiRlqGdYSBDnYXQm3dCkWThtLtjRqjkvS7zXdMbDAH9qVQbAFzIRkPNE9d",
+      "type": "string"
+    },
+    {
+      "key": "office",
+      "value": "96312ec6-49ad-4366-b97e-08de1aa12127",
+      "type": "string"
+    },
+    {
+      "key": "contractId",
+      "value": "EEA5ADC0-758C-4BF5-9247-131136EEB6AA",
+      "type": "string"
+    },
+    {
+      "key": "serviceTypeId",
+      "value": "D8BD3783-86B4-4CE9-900B-468C2069FD18",
+      "type": "string"
+    },
+    {
+      "key": "insuranceTypeId",
+      "value": "8c9e6753-d1dd-46dc-9901-3523b02b8a93",
+      "type": "string"
+    },
+    {
+      "key": "deadlineId",
+      "value": "F865EADF-E65A-438A-9618-311283C82B15",
+      "type": "string"
+    },
+    {
+      "key": "parcelTypeId",
+      "value": "976c51bd-cc4a-40fb-897c-4f8b905f489a",
+      "type": "string"
+    },
+    {
+      "key": "boxTypeId",
+      "value": "7d0a1a9e-0ec3-458c-a733-1aa04c33bcc8",
+      "type": "string"
+    },
+    {
+      "key": "paymentTypeId",
+      "value": "119A8743-BE66-44B3-B03D-7BDE4C1FE0CB",
+      "type": "string"
+    },
+    {
+      "key": "senderCityId",
+      "value": "26e869d1-d9ce-4ad2-98f3-7dd1651a0b0c",
+      "type": "string"
+    }
+  ]
+}

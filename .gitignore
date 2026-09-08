@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors / IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# PHP / Composer
+/vendor/
+composer.lock
+
+# Node (if any tooling gets added later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build / dist
+build/
+dist/
+*.zip
+*.tar
+
+# Logs
+*.log
+
+# Local env / secrets
+.env
+.env.local
+*.local
+
+# WordPress local artifacts
+wp-content/
+wp-config.php

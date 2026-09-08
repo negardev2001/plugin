@@ -1,0 +1,313 @@
+/**
+ * PARSI Order Meta Box Styles
+ *
+ * RTL-compatible styles for shipment meta box
+ *
+ * @package PARSI
+ */
+
+/* Main container */
+.parsi-shipment-meta-box {
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    text-align: right;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Field layout */
+.parsi-shipment-fields {
+    margin-bottom: 15px;
+}
+
+.parsi-field-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -8px 15px -8px;
+    align-items: flex-start;
+}
+
+.parsi-field-group {
+    flex: 1;
+    min-width: 250px;
+    margin: 0 8px 15px 8px;
+}
+
+/* Labels and inputs */
+.parsi-field-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #23282d;
+    font-size: 14px;
+}
+
+.parsi-field-label .required {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.parsi-input,
+.parsi-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.parsi-input:focus,
+.parsi-select:focus {
+    outline: none;
+    border-color: #007cba;
+    box-shadow: 0 0 0 1px #007cba;
+}
+
+.parsi-input.error,
+.parsi-select.error {
+    border-color: #e74c3c;
+    background-color: #fef7f7;
+}
+
+/* Textarea specific */
+.parsi-input[type="textarea"],
+textarea.parsi-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Radio buttons */
+.parsi-radio-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 5px;
+}
+
+.parsi-radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.parsi-radio-label input[type="radio"] {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+/* Select options */
+.parsi-select optgroup {
+    font-weight: bold;
+    color: #23282d;
+    background-color: #f9f9f9;
+    padding: 5px 0;
+}
+
+.parsi-select option {
+    padding: 5px 10px;
+    font-weight: normal;
+}
+
+/* Field descriptions */
+.parsi-field-description {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+/* Error messages */
+.parsi-field-error {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    background-color: #fef7f7;
+    padding: 5px 8px;
+    border-radius: 3px;
+    border: 1px solid #f5c6cb;
+}
+
+/* Notice messages */
+.parsi-notice {
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+    padding: 8px 12px;
+    margin-top: 5px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: none;
+}
+
+/* Buttons */
+.parsi-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.parsi-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.parsi-button-primary {
+    background-color: #007cba;
+    color: white;
+    border: 1px solid #007cba;
+}
+
+.parsi-button-primary:hover:not(:disabled) {
+    background-color: #005a87;
+    border-color: #005a87;
+}
+
+.parsi-button-secondary {
+    background-color: #f8f9fa;
+    color: #23282d;
+    border: 1px solid #ddd;
+}
+
+.parsi-button-secondary:hover:not(:disabled) {
+    background-color: #e9ecef;
+    border-color: #bbb;
+}
+
+/* Save status */
+.parsi-save-status {
+    margin-right: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.parsi-save-status.success {
+    color: #00a32a;
+}
+
+.parsi-save-status.error {
+    color: #e74c3c;
+}
+
+/* Parcel fields container */
+#parsi_parcel_fields {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 15px;
+}
+
+#parsi_parcel_fields .parsi-field-label {
+    color: #007cba;
+}
+
+/* Responsive design */
+@media screen and (max-width: 1200px) {
+    .parsi-field-group {
+        min-width: 200px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .parsi-field-row {
+        flex-direction: column;
+        margin: 0 0 15px 0;
+    }
+    
+    .parsi-field-group {
+        margin: 0 0 15px 0;
+        width: 100%;
+    }
+    
+    .parsi-radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* RTL specific fixes */
+.rtl .parsi-shipment-meta-box {
+    direction: rtl;
+    text-align: right;
+}
+
+.rtl .parsi-field-label {
+    text-align: right;
+}
+
+.rtl .parsi-radio-label input[type="radio"] {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.rtl .parsi-save-status {
+    margin-right: 10px;
+    margin-left: 0;
+}
+
+/* WooCommerce admin integration */
+.parsi-shipment-meta-box h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.parsi-shipment-meta-box .inside {
+    padding: 15px;
+}
+
+/* Animation for field transitions */
+.parsi-shipment-meta-box .parsi-field-row {
+    transition: all 0.3s ease;
+}
+
+.parsi-shipment-meta-box #parsi_parcel_fields {
+    transition: all 0.3s ease;
+}
+
+/* Focus styles for accessibility */
+.parsi-input:focus,
+.parsi-select:focus,
+.parsi-radio-label:focus-within {
+    outline: 2px solid #007cba;
+    outline-offset: 2px;
+}
+
+/* Disabled state for insurance options */
+.parsi-select option:disabled {
+    color: #999;
+    background-color: #f5f5f5;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .parsi-input,
+    .parsi-select {
+        border-width: 2px;
+    }
+    
+    .parsi-button-primary {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .parsi-input,
+    .parsi-select,
+    .parsi-button,
+    #parsi_parcel_fields,
+    .parsi-field-row {
+        transition: none;
+    }
+}
