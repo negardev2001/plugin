@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: PARSI - WooCommerce Shipping Integration
- * Plugin URI: https://parsipost.ir/
+ * Plugin URI: https://parsipost.com/
  * Description: A WooCommerce shipping plugin that calculates shipping rates using an external shipping API.
- * Version: 1.2.3
+ * Version: 1.2.5
  * Author: Negar Hassani
  * Author URI: mailto:Negarhassani1380@gmail.com
  * Text Domain: parsi
