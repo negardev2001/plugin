@@ -811,7 +811,8 @@ class PARSI_Orders_List {
                 wp_send_json_error(array('message' => __('ثبت انجام شد اما کد پیگیری دریافت نشد.', 'parsi')));
             }
         } else {
-            wp_send_json_error(array('message' => __('خطا در ثبت مجدد سفارش.', 'parsi')));
+            $error_message = isset($response['error']) ? $response['error'] : __('خطا در ثبت مجدد سفارش.', 'parsi');
+            wp_send_json_error(array('message' => $error_message));
         }
     }
 }

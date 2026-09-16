@@ -239,6 +239,14 @@ class PARSI_Shipping_Method extends WC_Shipping_Method {
 
         // Add rates if available
         if (!empty($rates) && is_array($rates)) {
+            $fixed_shipping_cost = (float) get_option('parsi_fixed_shipping_cost', 0);
+            if ($fixed_shipping_cost > 0) {
+                foreach ($rates as &$rate) {
+                    $rate['cost'] = $fixed_shipping_cost;
+                }
+                unset($rate);
+            }
+            
             foreach ($rates as $rate) {
                 if (isset($rate['id'], $rate['label'], $rate['cost'])) {
                     // Calculate final cost with all fees

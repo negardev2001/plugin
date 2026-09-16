@@ -173,14 +173,20 @@ class PARSI_API_Request {
     public function register_shipment($shipment_data) {
         if (!$this->is_configured()) {
             parsi_log('API key or office ID not configured for shipment registration', 'error');
-            return false;
+            return array(
+                'success' => false,
+                'error'   => __('API key یا شناسه دفتر پیکربندی نشده است.', 'parsi'),
+            );
         }
 
         $required = array('order_id', 'recipient_name', 'phone', 'address', 'postal_code', 'weight');
         foreach ($required as $field) {
             if (empty($shipment_data[$field])) {
                 parsi_log('Missing required shipment field: ' . $field, 'error');
-                return false;
+                return array(
+                    'success' => false,
+                    'error'   => sprintf(__('فیلد اجباری %s برای ثبت مرسوله مقدار ندارد.', 'parsi'), $field),
+                );
             }
         }
 
@@ -212,7 +218,10 @@ class PARSI_API_Request {
 
         if (empty($sender_city_id)) {
             parsi_log('parsi_sender_city_id not configured', 'error');
-            return false;
+            return array(
+                'success' => false,
+                'error'   => __('شناسه شهر فرستنده پیکربندی نشده است.', 'parsi'),
+            );
         }
         if (empty($receiver_city_id)) {
             return array(
@@ -285,7 +294,10 @@ class PARSI_API_Request {
                 update_option('parsi_credit_exhausted', time());
             }
             parsi_log('Save Order failed: ' . $error_message, 'error');
-            return false;
+            return array(
+                'success' => false,
+                'error'   => $error_message,
+            );
         }
 
         // A shipment registered successfully: any prior "out of credit" state is

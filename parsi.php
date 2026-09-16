@@ -458,6 +458,12 @@ class PARSI_Plugin {
             'sanitize_callback' => array($this, 'sanitize_float_positive'),
             'default' => 0
         ));
+
+        register_setting('parsi_settings', 'parsi_fixed_shipping_cost', array(
+            'type' => 'float',
+            'sanitize_callback' => array($this, 'sanitize_float_positive'),
+            'default' => 0
+        ));
         
         register_setting('parsi_settings', 'parsi_delivery_time_estimate', array(
             'type' => 'string',
@@ -639,6 +645,14 @@ class PARSI_Plugin {
             'parsi_max_shipping_cost',
             __('بیشینه هزینه ارسال', 'parsi'),
             array($this, 'render_max_shipping_cost_field'),
+            'parsi-settings',
+            'parsi_shipping_defaults_section'
+        );
+
+        add_settings_field(
+            'parsi_fixed_shipping_cost',
+            __('هزینه ثابت ارسال', 'parsi'),
+            array($this, 'render_fixed_shipping_cost_field'),
             'parsi-settings',
             'parsi_shipping_defaults_section'
         );
@@ -1500,6 +1514,20 @@ class PARSI_Plugin {
             <label class="parsi-form-label"><?php esc_html_e('بیشینه هزینه ارسال', 'parsi'); ?></label>
             <input type="number" name="parsi_max_shipping_cost" value="<?php echo esc_attr($value); ?>" step="0.01" min="0" class="parsi-form-input" placeholder="0.00" />
             <p class="parsi-field-description"><?php esc_html_e('حداکثر هزینه ارسال قابل نمایش برای مشتری. اگر هزینه محاسبه شده از API بیشتر از این مقدار باشد، این مبلغ نمایش داده می‌شود. 0 به معنای بدون محدودیت است.', 'parsi'); ?></p>
+        </div>
+        <?php
+    }
+
+    /**
+     * Render fixed shipping cost field
+     */
+    public function render_fixed_shipping_cost_field() {
+        $value = get_option('parsi_fixed_shipping_cost', 0);
+        ?>
+        <div class="parsi-form-row">
+            <label class="parsi-form-label"><?php esc_html_e('هزینه ثابت ارسال', 'parsi'); ?></label>
+            <input type="number" name="parsi_fixed_shipping_cost" value="<?php echo esc_attr($value); ?>" step="0.01" min="0" class="parsi-form-input" placeholder="0.00" />
+            <p class="parsi-field-description"><?php esc_html_e('هزینه ثابت ارسال برای نمایش به مشتری. اگر مبلغی وارد کنید، هزینه محاسبه شده از API نادیده گرفته شده و این مبلغ نمایش داده می‌شود. 0 به معنای استفاده از محاسبه خودکار API است.', 'parsi'); ?></p>
         </div>
         <?php
     }

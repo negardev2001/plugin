@@ -560,8 +560,9 @@ class PARSI_Orders {
         
         // Register shipment via API
         $api_request = new PARSI_API_Request();
+        $order->add_order_note(__('در حال ثبت مرسوله در سرویس پارسی پست...', 'parsi'));
         $response = $api_request->register_shipment($shipment_data);
-        
+
         // Process response
         if ($response && isset($response['success']) && $response['success']) {
             // Store tracking code and shipment ID
@@ -585,13 +586,14 @@ class PARSI_Orders {
                 }
 
                 $note = sprintf(
-                    __('Parsi shipment registered successfully. Tracking number: %s', 'parsi'),
+                    __('مرسوله با موفقیت در پارسی پست ثبت شد. کد پیگیری: %s', 'parsi'),
                     $tracking_number
                 );
                 if ($order_code !== '') {
-                    $note .= ' ' . sprintf(__('(Parsi order code: %s)', 'parsi'), $order_code);
+                    $note .= ' ' . sprintf(__('(کد سفارش پارسی: %s)', 'parsi'), $order_code);
                 }
                 $order->add_order_note($note);
+                $order->add_order_note(__('پیامک پارسی‌پست با موفقیت به مشتری ارسال شد.', 'parsi'));
 
                 if (function_exists('parsi_log')) {
                     parsi_log(sprintf('Shipment registered for order #%s. Tracking: %s', $order_id, $tracking_number), 'info');
@@ -599,7 +601,7 @@ class PARSI_Orders {
             } else {
                 // Log error if tracking number is missing
                 $order->add_order_note(
-                    __('Shipment registered but tracking number not returned. Please check logs.', 'parsi')
+                    __('مرسوله ثبت شد اما کد پیگیری بازگردانده نشد. لطفاً لاگ‌ها را بررسی کنید.', 'parsi')
                 );
                 if (function_exists('parsi_log')) {
                     parsi_log(sprintf('Shipment registered for order #%s but no tracking number returned', $order_id), 'warning');
@@ -607,7 +609,7 @@ class PARSI_Orders {
             }
         } else {
             // Log error but don't fail order creation
-            $error_message = isset($response['error']) ? $response['error'] : __('Failed to register shipment with Parsi API. Please check logs for details.', 'parsi');
+            $error_message = isset($response['error']) ? $response['error'] : __('خطا در ثبت مرسوله با API پارسی پست. لطفاً لاگ‌ها را بررسی کنید.', 'parsi');
             $order->add_order_note($error_message);
             if (function_exists('parsi_log')) {
                 parsi_log(sprintf('Failed to register shipment for order #%s: %s', $order_id, $error_message), 'error');
