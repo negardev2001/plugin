@@ -509,6 +509,15 @@ class PARSI_Shipping_Method extends WC_Shipping_Method {
             $final_cost = parsi_round_shipping_amount($final_cost);
         }
 
+        // Apply max shipping cost limit if set
+        $max_shipping_cost = (float) get_option('parsi_max_shipping_cost', 0);
+        if ($max_shipping_cost > 0 && $final_cost > $max_shipping_cost) {
+            $final_cost = $max_shipping_cost;
+            if (function_exists('parsi_log')) {
+                parsi_log(sprintf('Max shipping cost limit applied: final cost capped at %s', $max_shipping_cost), 'info');
+            }
+        }
+
         return $final_cost;
     }
 }

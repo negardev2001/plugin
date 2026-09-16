@@ -453,6 +453,12 @@ class PARSI_Plugin {
             'default' => 0
         ));
         
+        register_setting('parsi_settings', 'parsi_max_shipping_cost', array(
+            'type' => 'float',
+            'sanitize_callback' => array($this, 'sanitize_float_positive'),
+            'default' => 0
+        ));
+        
         register_setting('parsi_settings', 'parsi_delivery_time_estimate', array(
             'type' => 'string',
             'sanitize_callback' => 'sanitize_text_field',
@@ -625,6 +631,14 @@ class PARSI_Plugin {
             'parsi_free_shipping_threshold',
             __('آستانه ارسال رایگان', 'parsi'),
             array($this, 'render_free_shipping_threshold_field'),
+            'parsi-settings',
+            'parsi_shipping_defaults_section'
+        );
+        
+        add_settings_field(
+            'parsi_max_shipping_cost',
+            __('بیشینه هزینه ارسال', 'parsi'),
+            array($this, 'render_max_shipping_cost_field'),
             'parsi-settings',
             'parsi_shipping_defaults_section'
         );
@@ -1472,6 +1486,20 @@ class PARSI_Plugin {
             <label class="parsi-form-label"><?php esc_html_e('آستانه ارسال رایگان', 'parsi'); ?></label>
             <input type="number" name="parsi_free_shipping_threshold" value="<?php echo esc_attr($value); ?>" step="0.01" min="0" class="parsi-form-input" placeholder="0.00" />
             <p class="parsi-field-description"><?php esc_html_e('حداقل مبلغ سفارش برای ارسال رایگان. اگر مبلغ سفارش از این مقدار بیشتر باشد، هزینه ارسال رایگان خواهد بود. 0 به معنای غیرفعال بودن این قابلیت است.', 'parsi'); ?></p>
+        </div>
+        <?php
+    }
+    
+    /**
+     * Render max shipping cost field
+     */
+    public function render_max_shipping_cost_field() {
+        $value = get_option('parsi_max_shipping_cost', 0);
+        ?>
+        <div class="parsi-form-row">
+            <label class="parsi-form-label"><?php esc_html_e('بیشینه هزینه ارسال', 'parsi'); ?></label>
+            <input type="number" name="parsi_max_shipping_cost" value="<?php echo esc_attr($value); ?>" step="0.01" min="0" class="parsi-form-input" placeholder="0.00" />
+            <p class="parsi-field-description"><?php esc_html_e('حداکثر هزینه ارسال قابل نمایش برای مشتری. اگر هزینه محاسبه شده از API بیشتر از این مقدار باشد، این مبلغ نمایش داده می‌شود. 0 به معنای بدون محدودیت است.', 'parsi'); ?></p>
         </div>
         <?php
     }
